@@ -22,8 +22,4 @@ export class RecipesComponent implements OnInit {
         }
       );
   }
-
-  /* onRecipeWasSelected(recipe: Recipe) {
-    this.selectedRecipe = recipe;
-  } */
 }
