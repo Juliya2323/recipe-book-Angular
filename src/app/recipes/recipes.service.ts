@@ -10,7 +10,7 @@ export class RecipeService {
 
   recipeschanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
+  /* private recipes: Recipe[] = [
     new Recipe(
       'A pie',
       'This is my pie',
@@ -27,9 +27,16 @@ export class RecipeService {
         new Ingredient('meat', 5),
         new Ingredient('ketchup', 2)
       ])
-  ];
+  ]; */
+
+  private recipes: Recipe[] = [];
 
   constructor(private slService: ShoppingListService) {}
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipeschanged.next(this.recipes.slice());
+  }
 
   getRecipe(index: number) {
     return this.recipes[index];
