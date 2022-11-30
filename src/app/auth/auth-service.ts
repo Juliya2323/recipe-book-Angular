@@ -24,5 +24,6 @@ export class AuthService {
         returnSecureToken: true
       }
       );
+      //we dont subscribe here, we do it in the conponent
   }
 }
