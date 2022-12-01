@@ -3,13 +3,14 @@ import { Injectable } from "@angular/core";
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
 
-interface AuthResponseData {
+export interface AuthResponseData {
   kind: string;
   idToken: string;
   email: string;
   RefreshToken: string;
   expiresin: string;
   localId: string;
+  registered?: boolean;
 }
 
 @Injectable({providedIn: 'root'})
@@ -17,7 +18,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  signup(email: string, password: string, ) {
+  signup(email: string, password: string) {
     return this.http.post<AuthResponseData>(
       'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDe7NuCbFnECQ9Q_rLoljK_mPcl2PWwlzU',
       {
@@ -37,4 +38,15 @@ export class AuthService {
       }));
       //we dont subscribe here, we do it in the conponent
   }
+
+  login(email: string, password: string) {
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDe7NuCbFnECQ9Q_rLoljK_mPcl2PWwlzU',
+    {
+      email: email,
+      password: password,
+      returnSecureToken: true
+    }
+    )
+  }
+
 }

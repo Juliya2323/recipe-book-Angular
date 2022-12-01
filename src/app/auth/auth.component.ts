@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { AuthService } from "./auth-service";
+import { Observable } from "rxjs";
+import { AuthResponseData, AuthService } from "./auth-service";
 
 @Component({
   selector: 'app-auth',
@@ -24,21 +25,26 @@ export class AuthComponent {
     }
     const email = form.value.email;
     const password = form.value.password;
+    let authObservable: Observable<AuthResponseData>;
+    //чтобы импортировать тут интерфейс, в сервисе перед ним нужно добавить export
 
     this.isLoading = true;
 
     if (this.isLoginMode) {
-      //...
+      authObservable = this.authService.login(email, password);
     } else {
-      this.authService.signup(email, password).subscribe(resData => {
-        console.log(resData);
-        this.isLoading = false;
-      }, errorMessage => {
-        console.log(errorMessage);
-        this.error = errorMessage;
-        this.isLoading = false;
-      });
+      authObservable = this.authService.signup(email, password);
     }
+
+    authObservable.subscribe(resData => {
+      console.log(resData);
+      this.isLoading = false;
+    }, errorMessage => {
+      console.log(errorMessage);
+      this.error = errorMessage;
+      this.isLoading = false;
+    });
+// подписку вынесли в отдельную обёрвабл
 
     form.reset();
   }
