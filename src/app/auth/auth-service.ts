@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, tap } from "rxjs/operators";
-import { Subject, throwError } from "rxjs";
+import { BehaviorSubject, throwError } from "rxjs";
 import { User } from "./user.model";
 
 export interface AuthResponseData {
@@ -17,7 +17,9 @@ export interface AuthResponseData {
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-  user = new Subject<User>();
+  // user = new Subject<User>(); is this TOKEN???
+  // below it's a BehaviorSubject which allows to track each value, null is a starting value;
+  user = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient) {}
 
