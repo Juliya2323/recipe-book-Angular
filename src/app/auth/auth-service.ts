@@ -32,14 +32,6 @@ export class AuthService {
         returnSecureToken: true
       }
       ).pipe(catchError(this.handleError), tap(responseData => {
-        /* const expirationDate = new Date(new Date().getTime() + +responseData.expiresIn * 1000);
-        const user = new User(
-          responseData.email,
-          responseData.localId,
-          responseData.idToken,
-          expirationDate
-          );
-        this.user.next(user); */
         this.handleAuthentication(
           responseData.email,
           responseData.localId,
