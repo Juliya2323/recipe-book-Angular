@@ -19,14 +19,6 @@ import { RecipesComponent } from "./recipes.component";
         RecipeStartComponent,
         RecipeEditComponent,
     ],
-    exports: [
-        RecipesComponent,
-        RecipeListComponent,
-        RecipeDetailComponent,
-        RecipeItemComponent,
-        RecipeStartComponent,
-        RecipeEditComponent,
-    ],
     imports: [RouterModule, CommonModule, ReactiveFormsModule, RecipesRoutingModule]
     //добавить browserModule можно только 1 раз!!!! тут добавили CommonModule для ngIf / ngFor
     // модули работают отдельно, поэтому некоторые импортсы нужно добавлять отдельно. это не касается серсисов
