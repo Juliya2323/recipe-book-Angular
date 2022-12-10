@@ -11,7 +11,8 @@ import { ShoppingListService } from "./shopping-list/shopping-list.service";
     providers: [
         ShoppingListService,
         RecipeService,
-        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+        // LoggingService
     ]
 })
 export class CoreModule {}
