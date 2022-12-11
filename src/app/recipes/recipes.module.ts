@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
@@ -22,13 +21,13 @@ import { RecipesComponent } from "./recipes.component";
     ],
     imports: [
         RouterModule,
-        //CommonModule,
         ReactiveFormsModule,
         RecipesRoutingModule,
         SharedModule
     ]
     //добавить browserModule можно только 1 раз!!!! тут добавили CommonModule для ngIf / ngFor
     // модули работают отдельно, поэтому некоторые импортсы нужно добавлять отдельно. это не касается серсисов
+    // тут export не добавляем, т.к. мы импортируем все компоненты из router.recipes
 })
 export class RecipesModule {
 
